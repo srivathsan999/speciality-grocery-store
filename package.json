@@ -1,0 +1,16 @@
+{
+  "name": "specialty-grocery-store",
+  "version": "1.0.0",
+  "description": "Premium specialty grocery store HTML template",
+  "scripts": {
+    "build-css": "tailwindcss -i ./assets/css/style.css -o ./assets/css/output.css --watch",
+    "build": "tailwindcss -i ./assets/css/style.css -o ./assets/css/output.css --minify"
+  },
+  "keywords": ["grocery", "template", "html", "tailwind"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
+

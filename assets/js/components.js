@@ -1,0 +1,159 @@
+/**
+ * Shared Components
+ * Helper functions for navbar and footer HTML
+ */
+
+function getNavbarHTML(currentPage = '') {
+    const isActive = (page) => currentPage === page ? 'text-[#14532D] dark:text-[#84CC16] font-semibold' : 'text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16]';
+    
+    return `
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-white dark:bg-[#0F172A] border-b border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-[#84CC16] to-[#22C55E] rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">G</span>
+                    </div>
+                    <a href="index.html" class="text-2xl font-heading font-bold text-[#14532D] dark:text-[#84CC16]">GreenBasket</a>
+                </div>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="${isActive('index')} transition">Home</a>
+                    <a href="home-2.html" class="${isActive('home-2')} transition">Home 2</a>
+                    <a href="shop.html" class="${isActive('shop')} transition">Shop</a>
+                    <a href="categories.html" class="${isActive('categories')} transition">Categories</a>
+                    <a href="about.html" class="${isActive('about')} transition">About</a>
+                    <a href="blog.html" class="${isActive('blog')} transition">Blog</a>
+                    <a href="contact.html" class="${isActive('contact')} transition">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <a href="auth/login.html" class="hidden md:block px-4 py-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] transition">Login</a>
+                    <a href="auth/signup.html" class="hidden md:block px-4 py-2 bg-[#14532D] dark:bg-[#84CC16] text-white rounded-lg hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition">Sign Up</a>
+                    <a href="cart.html" class="relative p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#14532D] dark:text-[#84CC16]">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="cart-badge badge-cart" style="display: none;">0</span>
+                    </a>
+                    <button class="mobile-menu-toggle lg:hidden p-2" aria-label="Toggle menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu hidden lg:hidden bg-white dark:bg-[#0F172A] border-t border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)]">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="index.html" class="block py-2 text-[#14532D] dark:text-[#84CC16] font-semibold">Home</a>
+                <a href="home-2.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Home 2</a>
+                <a href="shop.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Shop</a>
+                <a href="categories.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Categories</a>
+                <a href="about.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">About</a>
+                <a href="blog.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Blog</a>
+                <a href="contact.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Contact</a>
+                <a href="auth/login.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Login</a>
+                <a href="auth/signup.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+    `;
+}
+
+function getFooterHTML() {
+    return `
+    <footer class="bg-[#14532D] dark:bg-[#0F172A] text-white py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-[#84CC16] to-[#22C55E] rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">G</span>
+                        </div>
+                        <span class="text-2xl font-heading font-bold">GreenBasket</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">Your trusted source for premium specialty groceries. Fresh, organic, and delivered with care.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#84CC16] transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#84CC16] transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#84CC16] transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-heading font-semibold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-[#84CC16] transition">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-[#84CC16] transition">About Us</a></li>
+                        <li><a href="shop.html" class="text-gray-300 hover:text-[#84CC16] transition">Shop</a></li>
+                        <li><a href="categories.html" class="text-gray-300 hover:text-[#84CC16] transition">Categories</a></li>
+                        <li><a href="blog.html" class="text-gray-300 hover:text-[#84CC16] transition">Blog</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-[#84CC16] transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-heading font-semibold text-lg mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="categories.html#fruits" class="text-gray-300 hover:text-[#84CC16] transition">Fresh Fruits</a></li>
+                        <li><a href="categories.html#vegetables" class="text-gray-300 hover:text-[#84CC16] transition">Vegetables</a></li>
+                        <li><a href="categories.html#dairy" class="text-gray-300 hover:text-[#84CC16] transition">Dairy & Eggs</a></li>
+                        <li><a href="categories.html#organic" class="text-gray-300 hover:text-[#84CC16] transition">Organic Products</a></li>
+                        <li><a href="categories.html#beverages" class="text-gray-300 hover:text-[#84CC16] transition">Beverages</a></li>
+                        <li><a href="categories.html#snacks" class="text-gray-300 hover:text-[#84CC16] transition">Snacks</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-heading font-semibold text-lg mb-4">Contact Info</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 mt-1 flex-shrink-0">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>123 Grocery Street, Food City, FC 12345</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 mt-1 flex-shrink-0">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 mt-1 flex-shrink-0">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <span>info@greenbasket.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 GreenBasket. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    `;
+}
+

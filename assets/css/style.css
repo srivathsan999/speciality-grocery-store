@@ -1,0 +1,344 @@
+/* Specialty Grocery Store - Premium Template */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables for Theme System */
+:root {
+  --brand-primary: #14532D;
+  --brand-accent: #84CC16;
+  --support-accent: #F59E0B;
+  --text-primary: #1F2933;
+  --text-secondary: #64748B;
+  --bg-primary: #F9FAFB;
+  --bg-surface: #FFFFFF;
+  --border-color: #E5E7EB;
+}
+
+:root[data-theme="light"] {
+  --brand-primary: #14532D;
+  --brand-accent: #84CC16;
+  --support-accent: #F59E0B;
+  --text-primary: #1F2933;
+  --text-secondary: #64748B;
+  --bg-primary: #F9FAFB;
+  --bg-surface: #FFFFFF;
+  --border-color: #E5E7EB;
+}
+
+:root[data-theme="dark"],
+html[data-theme="dark"] {
+  --brand-primary: #84CC16;
+  --brand-accent: #84CC16;
+  --support-accent: #FBBF24;
+  --text-primary: #E5E7EB;
+  --text-secondary: #9CA3AF;
+  --bg-primary: #020617;
+  --bg-surface: rgba(15, 23, 42, 0.6);
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ensure dark mode styles apply */
+[data-theme="dark"] body,
+html[data-theme="dark"] body {
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+[data-theme="dark"] *,
+html[data-theme="dark"] * {
+  border-color: var(--border-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 { font-size: 48px; }
+h2 { font-size: 36px; }
+h3 { font-size: 28px; }
+h4 { font-size: 22px; }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+
+/* Glassmorphism Utility */
+.glass {
+  background: var(--bg-surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .glass-nav {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* Neomorphism (Micro Use Only) */
+.neomorphic {
+  background: var(--bg-surface);
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1),
+              -8px -8px 16px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .neomorphic {
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3),
+              -8px -8px 16px rgba(255, 255, 255, 0.05);
+}
+
+/* Gradient CTA */
+.gradient-cta {
+  background: linear-gradient(135deg, #84CC16 0%, #22C55E 100%);
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gradient-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(132, 204, 22, 0.3);
+}
+
+/* Product Card */
+.product-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .product-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--brand-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-accent);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--brand-primary);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: 2px solid var(--brand-primary);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--brand-primary);
+  color: white;
+}
+
+/* Quantity Buttons (Neomorphism) */
+.qty-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1),
+              -4px -4px 8px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .qty-btn {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3),
+              -4px -4px 8px rgba(255, 255, 255, 0.05);
+}
+
+.qty-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Theme Toggle (Neomorphism) */
+.theme-toggle {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: none;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.1),
+              -6px -6px 12px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .theme-toggle {
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3),
+              -6px -6px 12px rgba(255, 255, 255, 0.05);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--brand-accent);
+  color: white;
+}
+
+.badge-cart {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--support-accent);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Section Spacing */
+.section {
+  padding: 80px 0;
+}
+
+.section-sm {
+  padding: 60px 0;
+}
+
+/* Container */
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 24px; }
+  body { font-size: 15px; }
+  .section { padding: 60px 0; }
+}
+
+@media (max-width: 375px) {
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Smooth Transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Focus States for Accessibility */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-accent);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-primary);
+}
+
