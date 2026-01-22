@@ -47,13 +47,13 @@
                     <a href="dashboard.html" class="text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] transition">Dashboard</a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+                    <button class="theme-toggle hidden lg:block" data-theme-toggle aria-label="Toggle theme">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
                     </button>
-                    <a href="auth/login.html" class="hidden md:block px-4 py-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] transition">Login</a>
-                    <a href="auth/signup.html" class="hidden md:block px-4 py-2 bg-[#14532D] dark:bg-[#84CC16] text-white rounded-lg hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition">Sign Up</a>
+                    <a href="auth/login.html" class="hidden lg:block px-4 py-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] transition">Login</a>
+                    <a href="auth/signup.html" class="hidden lg:block px-4 py-2 bg-[#14532D] dark:bg-[#84CC16] text-white rounded-lg hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition">Sign Up</a>
                     <a href="cart.html" class="relative p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#14532D] dark:text-[#84CC16]">
                             <circle cx="9" cy="21" r="1"></circle>
@@ -82,8 +82,16 @@
                 <a href="blog.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Blog</a>
                 <a href="contact.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Contact</a>
                 <a href="dashboard.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Dashboard</a>
-                <a href="auth/login.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Login</a>
-                <a href="auth/signup.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Sign Up</a>
+                <div class="pt-3 border-t border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] space-y-3">
+                    <button class="theme-toggle w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#64748B] dark:text-[#9CA3AF] hover:bg-[#F9FAFB] dark:hover:bg-[#1E293B] transition" data-theme-toggle aria-label="Toggle theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <span>Toggle Theme</span>
+                    </button>
+                    <a href="auth/login.html" class="block w-full text-center px-4 py-2 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#64748B] dark:text-[#9CA3AF] hover:bg-[#F9FAFB] dark:hover:bg-[#1E293B] transition font-medium">Login</a>
+                    <a href="auth/signup.html" class="block w-full text-center px-4 py-2 rounded-lg bg-[#14532D] dark:bg-[#84CC16] text-white hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition font-semibold">Sign Up</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -128,12 +136,16 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold text-[#1F2933] dark:text-[#E5E7EB] mb-3">Price Range</h4>
-                                <input type="range" min="0" max="100" value="50" class="w-full">
+                                <input type="range" id="priceRange" min="0" max="100" value="100" class="w-full">
                                 <div class="flex justify-between text-sm text-[#64748B] dark:text-[#9CA3AF] mt-2">
-                                    <span>$0</span>
-                                    <span>$100+</span>
+                                    <span>$<span id="minPrice">0</span></span>
+                                    <span>$<span id="maxPrice">100</span>+</span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="pt-4 border-t border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)]">
+                            <button id="applyFilters" class="w-full btn-primary px-4 py-2 font-semibold">Apply Filters</button>
+                            <button id="resetFilters" class="w-full mt-2 px-4 py-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] transition text-sm">Reset</button>
                         </div>
                     </div>
                 </aside>
@@ -141,7 +153,7 @@
                 <!-- Products Grid -->
                 <div class="flex-1">
                     <div class="flex items-center justify-between mb-6">
-                        <p class="text-[#64748B] dark:text-[#9CA3AF]">Showing 24 products</p>
+                        <p class="text-[#64748B] dark:text-[#9CA3AF]">Showing 12 products</p>
                         <select class="px-4 py-2 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#1F2933] dark:text-[#E5E7EB]">
                             <option>Sort by: Price (Low to High)</option>
                             <option>Price (High to Low)</option>
@@ -160,7 +172,20 @@
                                 <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Crisp and sweet, locally sourced</p>
                                 <div class="flex items-center justify-between">
                                     <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$12.99</span>
-                                    <button class="add-to-cart-btn btn-primary text-sm px-4 py-2">Add to Cart</button>
+                                    <div class="add-to-cart-container" data-product-id="1">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="1" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +198,20 @@
                                 <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Farm fresh, nutrient-rich</p>
                                 <div class="flex items-center justify-between">
                                     <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$8.99</span>
-                                    <button class="add-to-cart-btn btn-primary text-sm px-4 py-2">Add to Cart</button>
+                                    <div class="add-to-cart-container" data-product-id="2">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="2" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +225,20 @@
                                 <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Free-range, premium quality</p>
                                 <div class="flex items-center justify-between">
                                     <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$15.99</span>
-                                    <button class="add-to-cart-btn btn-primary text-sm px-4 py-2">Add to Cart</button>
+                                    <div class="add-to-cart-container" data-product-id="3">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="3" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +251,20 @@
                                 <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Vine-ripened, full flavor</p>
                                 <div class="flex items-center justify-between">
                                     <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$9.99</span>
-                                    <button class="add-to-cart-btn btn-primary text-sm px-4 py-2">Add to Cart</button>
+                                    <div class="add-to-cart-container" data-product-id="4">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="4" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -213,7 +277,20 @@
                                 <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Sweet and crunchy</p>
                                 <div class="flex items-center justify-between">
                                     <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$11.99</span>
-                                    <button class="add-to-cart-btn btn-primary text-sm px-4 py-2">Add to Cart</button>
+                                    <div class="add-to-cart-container" data-product-id="5">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="5" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +303,176 @@
                                 <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Fresh from local dairy</p>
                                 <div class="flex items-center justify-between">
                                     <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$14.99</span>
-                                    <button class="add-to-cart-btn btn-primary text-sm px-4 py-2">Add to Cart</button>
+                                    <div class="add-to-cart-container" data-product-id="6">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="6" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-product-id="7" data-price="10.99">
+                            <div class="relative aspect-square overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&h=400&fit=crop" alt="Fresh Strawberries" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="product-name font-heading font-semibold text-lg text-[#14532D] dark:text-[#84CC16] mb-2">Fresh Strawberries</h3>
+                                <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Sweet and juicy, locally grown</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$10.99</span>
+                                    <div class="add-to-cart-container" data-product-id="7">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="7" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-product-id="8" data-price="7.99">
+                            <div class="relative aspect-square overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1584270354949-c26b0d5b4a0c?w=400&h=400&fit=crop" alt="Organic Broccoli" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="product-name font-heading font-semibold text-lg text-[#14532D] dark:text-[#84CC16] mb-2">Organic Broccoli</h3>
+                                <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Nutrient-rich, farm fresh</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$7.99</span>
+                                    <div class="add-to-cart-container" data-product-id="8">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="8" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-product-id="9" data-price="13.99">
+                            <div class="relative aspect-square overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=400&h=400&fit=crop" alt="Fresh Butter" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="product-name font-heading font-semibold text-lg text-[#14532D] dark:text-[#84CC16] mb-2">Fresh Butter</h3>
+                                <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Creamy and rich, artisanal</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$13.99</span>
+                                    <div class="add-to-cart-container" data-product-id="9">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="9" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-product-id="10" data-price="6.99">
+                            <div class="relative aspect-square overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop" alt="Organic Bananas" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="product-name font-heading font-semibold text-lg text-[#14532D] dark:text-[#84CC16] mb-2">Organic Bananas</h3>
+                                <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Perfectly ripe, organic certified</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$6.99</span>
+                                    <div class="add-to-cart-container" data-product-id="10">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="10" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-product-id="11" data-price="5.99">
+                            <div class="relative aspect-square overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=400&fit=crop" alt="Fresh Orange Juice" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="product-name font-heading font-semibold text-lg text-[#14532D] dark:text-[#84CC16] mb-2">Fresh Orange Juice</h3>
+                                <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">100% pure, no added sugar</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$5.99</span>
+                                    <div class="add-to-cart-container" data-product-id="11">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="11" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-product-id="12" data-price="8.99">
+                            <div class="relative aspect-square overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=400&fit=crop" alt="Organic Granola" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="product-name font-heading font-semibold text-lg text-[#14532D] dark:text-[#84CC16] mb-2">Organic Granola</h3>
+                                <p class="text-sm text-[#64748B] dark:text-[#9CA3AF] mb-3">Crunchy and healthy, homemade</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="product-price text-xl font-bold text-[#14532D] dark:text-[#84CC16]">$8.99</span>
+                                    <div class="add-to-cart-container" data-product-id="12">
+                                        <button class="add-to-cart-btn btn-primary text-sm px-4 py-2" data-product-id="12" data-quantity="1">Add to Cart</button>
+                                        <div class="cart-controls hidden flex items-center space-x-2">
+                                            <button class="cart-quantity-decrease w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">-</button>
+                                            <span class="cart-quantity-display w-8 text-center font-semibold text-[#14532D] dark:text-[#84CC16]">1</span>
+                                            <button class="cart-quantity-increase w-8 h-8 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#14532D] dark:text-[#84CC16] hover:bg-[#84CC16] hover:text-white transition flex items-center justify-center">+</button>
+                                            <button class="remove-from-cart-btn w-8 h-8 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition flex items-center justify-center" title="Remove from cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -324,7 +570,7 @@
                 </div>
             </div>
             <div class="border-t border-white/10 pt-8 text-center text-gray-300">
-                <p>&copy; 2024 GreenBasket. All rights reserved.</p>
+                <p>&copy; 2026 GreenBasket. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -334,6 +580,279 @@
     <script src="assets/js/navbar.js"></script>
     <script src="assets/js/cart.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        // Quantity Controls
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Update add to cart button to use quantity
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    const quantity = 1; // Default quantity is 1 when adding to cart
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('.product-name').textContent;
+                    const productPrice = productCard.querySelector('.product-price').textContent;
+                    
+                    // Get existing cart or initialize
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    
+                    // Check if product already exists in cart
+                    const existingItem = cart.find(item => item.id === productId);
+                    if (existingItem) {
+                        existingItem.quantity += quantity;
+                    } else {
+                        cart.push({
+                            id: productId,
+                            name: productName,
+                            price: productPrice,
+                            quantity: quantity
+                        });
+                    }
+                    
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    
+                    // Hide "Add to Cart" button and show cart controls
+                    const container = this.closest('.add-to-cart-container');
+                    const addBtn = container.querySelector('.add-to-cart-btn');
+                    const cartControls = container.querySelector('.cart-controls');
+                    const quantityDisplay = container.querySelector('.cart-quantity-display');
+                    
+                    addBtn.classList.add('hidden');
+                    cartControls.classList.remove('hidden');
+                    if (quantityDisplay) {
+                        quantityDisplay.textContent = existingItem ? existingItem.quantity : quantity;
+                    }
+                    
+                    // Update cart badge if exists
+                    const cartBadge = document.querySelector('.cart-badge');
+                    if (cartBadge) {
+                        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                        cartBadge.textContent = totalItems;
+                        cartBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+                    }
+                });
+            });
+
+            // Cart quantity controls (for items already in cart)
+            document.querySelectorAll('.cart-quantity-increase').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const container = this.closest('.add-to-cart-container');
+                    const productId = container.getAttribute('data-product-id');
+                    const quantityDisplay = container.querySelector('.cart-quantity-display');
+                    let currentQuantity = parseInt(quantityDisplay.textContent) || 1;
+                    currentQuantity++;
+                    quantityDisplay.textContent = currentQuantity;
+                    
+                    // Update cart in localStorage
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const item = cart.find(item => item.id === productId);
+                    if (item) {
+                        item.quantity = currentQuantity;
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        
+                        // Update cart badge
+                        const cartBadge = document.querySelector('.cart-badge');
+                        if (cartBadge) {
+                            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                            cartBadge.textContent = totalItems;
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('.cart-quantity-decrease').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const container = this.closest('.add-to-cart-container');
+                    const productId = container.getAttribute('data-product-id');
+                    const quantityDisplay = container.querySelector('.cart-quantity-display');
+                    let currentQuantity = parseInt(quantityDisplay.textContent) || 1;
+                    
+                    if (currentQuantity > 1) {
+                        currentQuantity--;
+                        quantityDisplay.textContent = currentQuantity;
+                        
+                        // Update cart in localStorage
+                        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                        const item = cart.find(item => item.id === productId);
+                        if (item) {
+                            item.quantity = currentQuantity;
+                            localStorage.setItem('cart', JSON.stringify(cart));
+                            
+                            // Update cart badge
+                            const cartBadge = document.querySelector('.cart-badge');
+                            if (cartBadge) {
+                                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                                cartBadge.textContent = totalItems;
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Remove from cart
+            document.querySelectorAll('.remove-from-cart-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const container = this.closest('.add-to-cart-container');
+                    const productId = container.getAttribute('data-product-id');
+                    
+                    // Remove from cart in localStorage
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    cart = cart.filter(item => item.id !== productId);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    
+                    // Hide cart controls and show "Add to Cart" button
+                    const addBtn = container.querySelector('.add-to-cart-btn');
+                    const cartControls = container.querySelector('.cart-controls');
+                    
+                    cartControls.classList.add('hidden');
+                    addBtn.classList.remove('hidden');
+                    
+                    // Reset quantity display
+                    const quantityDisplay = container.querySelector('.cart-quantity-display');
+                    if (quantityDisplay) {
+                        quantityDisplay.textContent = '1';
+                    }
+                    
+                    // Update cart badge
+                    const cartBadge = document.querySelector('.cart-badge');
+                    if (cartBadge) {
+                        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                        cartBadge.textContent = totalItems;
+                        cartBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+                    }
+                });
+            });
+
+            // Check cart on page load and show appropriate controls
+            function checkCartOnLoad() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                document.querySelectorAll('.add-to-cart-container').forEach(container => {
+                    const productId = container.getAttribute('data-product-id');
+                    const cartItem = cart.find(item => item.id === productId);
+                    
+                    if (cartItem) {
+                        const addBtn = container.querySelector('.add-to-cart-btn');
+                        const cartControls = container.querySelector('.cart-controls');
+                        const quantityDisplay = container.querySelector('.cart-quantity-display');
+                        
+                        addBtn.classList.add('hidden');
+                        cartControls.classList.remove('hidden');
+                        if (quantityDisplay) {
+                            quantityDisplay.textContent = cartItem.quantity;
+                        }
+                    }
+                });
+            }
+            
+            checkCartOnLoad();
+
+            // Price Range Slider
+            const priceRange = document.getElementById('priceRange');
+            const minPrice = document.getElementById('minPrice');
+            const maxPrice = document.getElementById('maxPrice');
+            
+            if (priceRange) {
+                priceRange.addEventListener('input', function() {
+                    maxPrice.textContent = this.value;
+                });
+            }
+
+            // Filter Functionality
+            const applyFiltersBtn = document.getElementById('applyFilters');
+            const resetFiltersBtn = document.getElementById('resetFilters');
+            
+            if (applyFiltersBtn) {
+                applyFiltersBtn.addEventListener('click', function() {
+                    const selectedCategories = [];
+                    document.querySelectorAll('aside input[type="checkbox"]:checked').forEach(checkbox => {
+                        selectedCategories.push(checkbox.nextElementSibling.textContent.trim());
+                    });
+                    
+                    const maxPrice = parseFloat(priceRange.value);
+                    
+                    // Filter products
+                    const productCards = document.querySelectorAll('.product-card');
+                    let visibleCount = 0;
+                    
+                    productCards.forEach(card => {
+                        const productPrice = parseFloat(card.getAttribute('data-price'));
+                        const productName = card.querySelector('.product-name').textContent.toLowerCase();
+                        
+                        let shouldShow = true;
+                        
+                        // Check price
+                        if (productPrice > maxPrice) {
+                            shouldShow = false;
+                        }
+                        
+                        // Check category (simplified - in real app, products would have category data)
+                        if (selectedCategories.length > 0) {
+                            // This is a simplified check - you'd need actual category data
+                            const matchesCategory = selectedCategories.some(cat => {
+                                const catLower = cat.toLowerCase();
+                                return productName.includes(catLower) || 
+                                       (catLower === 'fruits' && productName.includes('apple')) ||
+                                       (catLower === 'vegetables' && (productName.includes('spinach') || productName.includes('carrot') || productName.includes('tomato'))) ||
+                                       (catLower === 'dairy' && (productName.includes('milk') || productName.includes('egg'))) ||
+                                       (catLower === 'organic' && productName.includes('organic'));
+                            });
+                            
+                            if (!matchesCategory) {
+                                shouldShow = false;
+                            }
+                        }
+                        
+                        if (shouldShow) {
+                            card.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    
+                    // Update product count
+                    const productCount = document.querySelector('.flex.items-center.justify-between.mb-6 p');
+                    if (productCount) {
+                        productCount.textContent = `Showing ${visibleCount} products`;
+                    }
+                    
+                    // Show feedback
+                    this.textContent = 'Applied!';
+                    this.classList.add('bg-green-500');
+                    setTimeout(() => {
+                        this.textContent = 'Apply Filters';
+                        this.classList.remove('bg-green-500');
+                    }, 1000);
+                });
+            }
+            
+            if (resetFiltersBtn) {
+                resetFiltersBtn.addEventListener('click', function() {
+                    // Reset checkboxes
+                    document.querySelectorAll('aside input[type="checkbox"]').forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+                    
+                    // Reset price range
+                    if (priceRange) {
+                        priceRange.value = 100;
+                        maxPrice.textContent = '100';
+                    }
+                    
+                    // Show all products
+                    document.querySelectorAll('.product-card').forEach(card => {
+                        card.style.display = 'block';
+                    });
+                    
+                    // Update product count
+                    const productCount = document.querySelector('.flex.items-center.justify-between.mb-6 p');
+                    if (productCount) {
+                        productCount.textContent = 'Showing 24 products';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 

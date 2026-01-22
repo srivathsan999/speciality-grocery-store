@@ -30,17 +30,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Mobile menu toggle
   if (mobileMenuToggle && mobileMenu) {
-    mobileMenuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-      mobileMenuToggle.classList.toggle('active');
+    mobileMenuToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Toggle hidden class
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenuToggle.classList.add('active');
+      } else {
+        mobileMenu.classList.add('hidden');
+        mobileMenuToggle.classList.remove('active');
+      }
     });
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
-      if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-        mobileMenu.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
+      if (mobileMenu && mobileMenuToggle) {
+        const isClickInsideMenu = mobileMenu.contains(e.target);
+        const isClickOnToggle = mobileMenuToggle.contains(e.target);
+        
+        if (!isClickInsideMenu && !isClickOnToggle && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          mobileMenuToggle.classList.remove('active');
+        }
       }
+    });
+
+    // Close mobile menu when clicking on a link inside
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuToggle.classList.remove('active');
+      });
     });
   }
 

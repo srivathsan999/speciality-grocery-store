@@ -40,13 +40,13 @@
                     <a href="dashboard.html" class="text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] transition">Dashboard</a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+                    <button class="theme-toggle hidden lg:block" data-theme-toggle aria-label="Toggle theme">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
                     </button>
-                    <a href="auth/login.html" class="hidden md:block px-4 py-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] transition">Login</a>
-                    <a href="auth/signup.html" class="hidden md:block px-4 py-2 bg-[#14532D] dark:bg-[#84CC16] text-white rounded-lg hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition">Sign Up</a>
+                    <a href="auth/login.html" class="hidden lg:block px-4 py-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] transition">Login</a>
+                    <a href="auth/signup.html" class="hidden lg:block px-4 py-2 bg-[#14532D] dark:bg-[#84CC16] text-white rounded-lg hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition">Sign Up</a>
                     <a href="cart.html" class="relative p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#14532D] dark:text-[#84CC16]">
                             <circle cx="9" cy="21" r="1"></circle>
@@ -75,8 +75,16 @@
                 <a href="blog.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Blog</a>
                 <a href="contact.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Contact</a>
                 <a href="dashboard.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Dashboard</a>
-                <a href="auth/login.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Login</a>
-                <a href="auth/signup.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Sign Up</a>
+                <div class="pt-3 border-t border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] space-y-3">
+                    <button class="theme-toggle w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#64748B] dark:text-[#9CA3AF] hover:bg-[#F9FAFB] dark:hover:bg-[#1E293B] transition" data-theme-toggle aria-label="Toggle theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <span>Toggle Theme</span>
+                    </button>
+                    <a href="auth/login.html" class="block w-full text-center px-4 py-2 rounded-lg border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] bg-white dark:bg-[#0F172A] text-[#64748B] dark:text-[#9CA3AF] hover:bg-[#F9FAFB] dark:hover:bg-[#1E293B] transition font-medium">Login</a>
+                    <a href="auth/signup.html" class="block w-full text-center px-4 py-2 rounded-lg bg-[#14532D] dark:bg-[#84CC16] text-white hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition font-semibold">Sign Up</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -231,7 +239,7 @@
                 </div>
             </div>
             <div class="border-t border-white/10 pt-8 text-center text-gray-300">
-                <p>&copy; 2024 GreenBasket. All rights reserved.</p>
+                <p>&copy; 2026 GreenBasket. All rights reserved.</p>
             </div>
         </div>
     </footer>
