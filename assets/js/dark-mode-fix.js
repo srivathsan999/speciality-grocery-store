@@ -4,53 +4,82 @@
  */
 
 (function() {
-  // Wait for DOM to be ready
+  try {
+  // Function to update dark class - can be called immediately
+  function updateDarkClass() {
+    if (!document.documentElement) return;
+    const theme = document.documentElement.getAttribute('data-theme');
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }
+  
+  // Initialize immediately if possible, otherwise wait for DOM
   function init() {
-    // Force Tailwind to recognize dark mode
-    if (typeof tailwind !== 'undefined') {
-      // Re-initialize Tailwind with dark mode config
-      const config = {
-        darkMode: ['selector', '[data-theme="dark"]']
-      };
-      
-      // Apply config if possible
-      if (tailwind.config) {
-        Object.assign(tailwind.config, config);
+    // Force Tailwind to recognize dark mode - try multiple times if needed
+    function configureTailwind() {
+      if (typeof tailwind !== 'undefined') {
+        // Re-initialize Tailwind with dark mode config
+        const config = {
+          darkMode: ['selector', '[data-theme="dark"]']
+        };
+        
+        // Apply config if possible
+        if (tailwind.config) {
+          Object.assign(tailwind.config, config);
+        } else if (window.tailwindConfig) {
+          // If config is in window, merge it
+          Object.assign(window.tailwindConfig, config);
+        }
       }
     }
     
-    // Add a class to html when dark mode is active for additional CSS targeting
-    function updateDarkClass() {
-      const theme = document.documentElement.getAttribute('data-theme');
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
+    // Try to configure Tailwind immediately
+    configureTailwind();
     
-    // Initial update
+    // Also try after a short delay in case Tailwind loads later
+    setTimeout(configureTailwind, 100);
+    
+    // Initial update - run immediately
     updateDarkClass();
     
     // Watch for theme changes
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-          updateDarkClass();
-        }
+    if (document.documentElement) {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+            updateDarkClass();
+            // Reconfigure Tailwind when theme changes
+            configureTailwind();
+          }
+        });
       });
-    });
-    
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme']
-    });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+    }
   }
   
+  // Run update immediately if documentElement exists
+  if (document.documentElement) {
+    updateDarkClass();
+  }
+  
+  // Full initialization
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
+  }
+  
+  // Make updateDarkClass available globally for theme.js to call
+  window.updateDarkClass = updateDarkClass;
+  } catch (error) {
+    console.error('Error initializing dark mode fix:', error);
   }
 })();
 

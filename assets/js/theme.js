@@ -13,9 +13,27 @@ class ThemeController {
     if (this.initialized) return;
     this.initialized = true;
     
-    // Set initial theme immediately
+    // Set initial theme immediately, but ensure dark-mode-fix has run
     if (document.documentElement) {
-      document.documentElement.setAttribute('data-theme', this.theme);
+      // Get current theme from HTML if set
+      const htmlTheme = document.documentElement.getAttribute('data-theme');
+      if (htmlTheme) {
+        this.theme = htmlTheme;
+      } else {
+        document.documentElement.setAttribute('data-theme', this.theme);
+      }
+      
+      // Trigger dark class update if updateDarkClass is available
+      if (typeof window.updateDarkClass === 'function') {
+        window.updateDarkClass();
+      } else {
+        // Fallback: wait a bit for dark-mode-fix to initialize
+        setTimeout(() => {
+          if (typeof window.updateDarkClass === 'function') {
+            window.updateDarkClass();
+          }
+        }, 10);
+      }
     }
     
     // Wait for DOM to be ready
@@ -56,6 +74,12 @@ class ThemeController {
     this.theme = this.theme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', this.theme);
     localStorage.setItem('theme', this.theme);
+    
+    // Trigger dark class update
+    if (typeof window.updateDarkClass === 'function') {
+      window.updateDarkClass();
+    }
+    
     this.updateToggleButton();
     
     // Dispatch custom event for any components that need to react
@@ -110,14 +134,27 @@ class ThemeController {
   }
 }
 
-// Initialize theme controller
-const themeController = new ThemeController();
-themeController.init();
+// Initialize theme controller with error handling
+try {
+  const themeController = new ThemeController();
+  themeController.init();
 
-// Make it globally available
-window.themeController = themeController;
+  // Make it globally available
+  window.themeController = themeController;
 
-// Also support direct function calls
-window.toggleTheme = function() {
-  themeController.toggle();
-};
+  // Also support direct function calls
+  window.toggleTheme = function() {
+    try {
+      themeController.toggle();
+    } catch (error) {
+      console.error('Error toggling theme:', error);
+    }
+  };
+} catch (error) {
+  console.error('Error initializing theme controller:', error);
+  // Fallback: ensure data-theme is set
+  if (document.documentElement) {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+}

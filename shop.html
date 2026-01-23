@@ -108,11 +108,30 @@
     <!-- Filters & Products -->
     <section class="section">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Mobile Filter Button -->
+            <button id="mobileFilterToggle" class="lg:hidden mb-4 w-full flex items-center justify-center space-x-2 px-4 py-3 bg-[#14532D] dark:bg-[#84CC16] text-white rounded-lg hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <span>Filters</span>
+            </button>
+
             <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Mobile Filter Overlay -->
+                <div id="mobileFilterOverlay" class="fixed inset-0 bg-black/50 z-40 lg:hidden hidden"></div>
+                
                 <!-- Sidebar Filters -->
-                <aside class="lg:w-64 flex-shrink-0">
-                    <div class="glass rounded-2xl p-6 sticky top-24">
-                        <h3 class="font-heading font-semibold text-lg text-[#14532D] dark:text-[#84CC16] mb-4">Filters</h3>
+                <aside id="filterSidebar" class="fixed lg:relative top-20 left-0 h-[calc(100vh-5rem)] lg:h-auto w-80 lg:w-64 flex-shrink-0 bg-white dark:bg-[#0F172A] lg:bg-transparent z-50 lg:z-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shadow-xl lg:shadow-none">
+                    <div class="p-6 lg:glass lg:rounded-2xl lg:sticky lg:top-24 h-full lg:h-auto overflow-y-auto">
+                        <div class="flex items-center justify-between mb-4 lg:mb-4">
+                            <h3 class="font-heading font-semibold text-lg text-[#14532D] dark:text-[#84CC16]">Filters</h3>
+                            <button id="closeFilterSidebar" class="lg:hidden p-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
                         <div class="space-y-6">
                             <div>
                                 <h4 class="font-semibold text-[#1F2933] dark:text-[#E5E7EB] mb-3">Category</h4>
@@ -758,6 +777,36 @@
                 });
             }
 
+            // Mobile Filter Sidebar Toggle
+            const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+            const mobileFilterOverlay = document.getElementById('mobileFilterOverlay');
+            const filterSidebar = document.getElementById('filterSidebar');
+            const closeFilterSidebar = document.getElementById('closeFilterSidebar');
+            
+            function openFilterSidebar() {
+                filterSidebar.classList.remove('-translate-x-full');
+                mobileFilterOverlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeFilterSidebarFunc() {
+                filterSidebar.classList.add('-translate-x-full');
+                mobileFilterOverlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+            
+            if (mobileFilterToggle) {
+                mobileFilterToggle.addEventListener('click', openFilterSidebar);
+            }
+            
+            if (closeFilterSidebar) {
+                closeFilterSidebar.addEventListener('click', closeFilterSidebarFunc);
+            }
+            
+            if (mobileFilterOverlay) {
+                mobileFilterOverlay.addEventListener('click', closeFilterSidebarFunc);
+            }
+
             // Filter Functionality
             const applyFiltersBtn = document.getElementById('applyFilters');
             const resetFiltersBtn = document.getElementById('resetFilters');
@@ -824,6 +873,11 @@
                         this.textContent = 'Apply Filters';
                         this.classList.remove('bg-green-500');
                     }, 1000);
+                    
+                    // Close mobile filter sidebar after applying
+                    if (window.innerWidth < 1024) {
+                        closeFilterSidebarFunc();
+                    }
                 });
             }
             
