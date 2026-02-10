@@ -41,7 +41,7 @@
                     <a href="index.html"
                         class="text-2xl font-heading font-bold text-[#14532D] dark:text-[#84CC16]">GreenBasket</a>
                 </div>
-                <div class="hidden lg:flex items-center space-x-8">
+                <div class="hidden xl:flex items-center space-x-8">
                     <a href="index.html"
                         class="text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] transition">Home</a>
                     <a href="home-2.html"
@@ -61,7 +61,7 @@
                         class="text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] transition">Dashboard</a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <button class="theme-toggle hidden lg:flex items-center justify-center w-10 h-10" data-theme-toggle
+                    <button class="theme-toggle hidden xl:flex items-center justify-center w-10 h-10" data-theme-toggle
                         aria-label="Toggle theme">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -69,9 +69,9 @@
                         </svg>
                     </button>
                     <a href="auth/login.html"
-                        class="hidden lg:block px-4 py-2 rounded-lg border border-[#14532D] dark:border-[#84CC16] text-[#14532D] dark:text-[#84CC16] hover:bg-[#14532D] hover:text-white dark:hover:bg-[#84CC16] dark:hover:text-white transition">Login</a>
+                        class="hidden xl:block px-4 py-2 rounded-lg border border-[#14532D] dark:border-[#84CC16] text-[#14532D] dark:text-[#84CC16] hover:bg-[#14532D] hover:text-white dark:hover:bg-[#84CC16] dark:hover:text-white transition">Login</a>
                     <a href="auth/signup.html"
-                        class="hidden lg:block px-4 py-2 bg-[#14532D] dark:bg-[#84CC16] text-white rounded-lg hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition">Sign
+                        class="hidden xl:block px-4 py-2 bg-[#14532D] dark:bg-[#84CC16] text-white rounded-lg hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition">Sign
                         Up</a>
                     <a href="cart.html" class="relative p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -83,7 +83,7 @@
                         </svg>
                         <span class="cart-badge badge-cart" style="display: none;">0</span>
                     </a>
-                    <button class="mobile-menu-toggle lg:hidden p-2" aria-label="Toggle menu">
+                    <button class="mobile-menu-toggle xl:hidden p-2" aria-label="Toggle menu">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -95,7 +95,7 @@
             </div>
         </div>
         <div
-            class="mobile-menu hidden lg:hidden bg-white dark:bg-[#0F172A] border-t border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)]">
+            class="mobile-menu hidden xl:hidden bg-white dark:bg-[#0F172A] border-t border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)]">
             <div class="container mx-auto px-4 py-4 space-y-3">
                 <a href="index.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Home</a>
                 <a href="home-2.html" class="block py-2 text-[#64748B] dark:text-[#9CA3AF]">Home 2</a>
@@ -140,7 +140,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Mobile Filter Button -->
             <button id="mobileFilterToggle"
-                class="lg:hidden mb-4 w-full flex items-center justify-center space-x-2 px-4 py-3 bg-[#14532D] dark:bg-[#84CC16] text-white rounded-lg hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition">
+                class="xl:hidden mb-4 w-full flex items-center justify-center space-x-2 px-4 py-3 bg-[#14532D] dark:bg-[#84CC16] text-white rounded-lg hover:bg-[#84CC16] dark:hover:bg-[#FBBF24] transition">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
@@ -148,19 +148,19 @@
                 <span>Filters</span>
             </button>
 
-            <div class="flex flex-col lg:flex-row gap-8">
+            <div class="flex flex-col xl:flex-row gap-8">
                 <!-- Mobile Filter Overlay -->
-                <div id="mobileFilterOverlay" class="fixed inset-0 bg-black/50 z-40 lg:hidden hidden"></div>
+                <div id="mobileFilterOverlay" class="fixed inset-0 bg-black/50 z-40 xl:hidden hidden"></div>
 
                 <!-- Sidebar Filters -->
                 <aside id="filterSidebar"
-                    class="fixed lg:relative top-20 left-0 h-[calc(100vh-5rem)] lg:h-auto w-80 lg:w-64 flex-shrink-0 bg-white dark:bg-[#0F172A] lg:bg-transparent z-50 lg:z-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shadow-xl lg:shadow-none">
-                    <div class="p-6 lg:glass lg:rounded-2xl lg:sticky lg:top-24 h-full lg:h-auto overflow-y-auto">
-                        <div class="flex items-center justify-between mb-4 lg:mb-4">
+                    class="fixed xl:relative top-20 left-0 h-[calc(100vh-5rem)] xl:h-auto w-80 xl:w-64 flex-shrink-0 bg-white dark:bg-[#0F172A] xl:bg-transparent z-50 xl:z-auto transform -translate-x-full xl:translate-x-0 transition-transform duration-300 ease-in-out shadow-xl xl:shadow-none">
+                    <div class="p-6 xl:glass xl:rounded-2xl xl:sticky xl:top-24 h-full xl:h-auto overflow-y-auto">
+                        <div class="flex items-center justify-between mb-4 xl:mb-4">
                             <h3 class="font-heading font-semibold text-lg text-[#14532D] dark:text-[#84CC16]">Filters
                             </h3>
                             <button id="closeFilterSidebar"
-                                class="lg:hidden p-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16]">
+                                class="xl:hidden p-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round">
@@ -221,7 +221,7 @@
                             <option>Newest First</option>
                         </select>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                         <div class="product-card" data-product-id="1" data-price="12.99">
                             <div class="relative aspect-square overflow-hidden">
                                 <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=400&h=400&fit=crop"

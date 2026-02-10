@@ -32,7 +32,7 @@
                 <div class="flex items-center space-x-2">
                     <!-- Mobile Menu Button -->
                     <button onclick="toggleSidebar()"
-                        class="lg:hidden p-2 -ml-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] mr-2"
+                        class="xl:hidden p-2 -ml-2 text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-[#84CC16] mr-2"
                         aria-label="Open menu">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -85,20 +85,20 @@
     <!-- Dashboard Content -->
     <section class="py-12">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-4 gap-8">
+            <div class="grid xl:grid-cols-4 gap-8">
                 <!-- Sidebar Menu -->
                 <!-- Mobile Sidebar Overlay -->
                 <div id="sidebar-overlay"
-                    class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden transition-opacity duration-300 opacity-0"
+                    class="fixed inset-0 bg-black/50 z-40 hidden xl:hidden transition-opacity duration-300 opacity-0"
                     onclick="toggleSidebar()"></div>
 
                 <!-- Sidebar Menu -->
                 <aside id="dashboard-sidebar"
-                    class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-[#0F172A] transform -translate-x-full transition-transform duration-300 lg:translate-x-0 lg:static lg:block lg:bg-transparent lg:shadow-none shadow-2xl lg:col-span-1 border-r border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] lg:border-none">
-                    <div class="h-full flex flex-col p-6 lg:p-0 lg:glass lg:rounded-2xl lg:sticky lg:top-24">
+                    class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-[#0F172A] transform -translate-x-full transition-transform duration-300 xl:translate-x-0 xl:static xl:block xl:bg-transparent xl:shadow-none shadow-2xl xl:col-span-1 border-r border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] xl:border-none">
+                    <div class="h-full flex flex-col p-6 xl:p-0 xl:glass xl:rounded-2xl xl:sticky xl:top-24">
 
                         <!-- Mobile Header inside Sidebar -->
-                        <div class="flex items-center justify-between mb-6 lg:hidden">
+                        <div class="flex items-center justify-between mb-6 xl:hidden">
                             <span class="text-xl font-bold text-[#14532D] dark:text-[#84CC16]">Menu</span>
                             <button onclick="toggleSidebar()"
                                 class="text-[#64748B] dark:text-[#9CA3AF] hover:text-[#14532D] dark:hover:text-white">
@@ -190,7 +190,7 @@
                 </aside>
 
                 <!-- Main Content -->
-                <div class="lg:col-span-3 space-y-8">
+                <div class="xl:col-span-3 space-y-8">
                     <!-- Order History -->
                     <div id="orders"
                         class="bg-white dark:bg-[#0F172A] rounded-2xl border border-[#E5E7EB] dark:border-[rgba(255,255,255,0.1)] p-6">

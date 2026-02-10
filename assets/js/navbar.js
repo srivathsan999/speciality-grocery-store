@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Sticky navbar with glassmorphism
   if (navbar) {
     let lastScroll = 0;
-    
+
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
-      
+
       if (currentScroll > 100) {
         navbar.classList.add('scrolled');
         navbar.classList.add('glass-nav');
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navbar.classList.remove('scrolled');
         navbar.classList.remove('glass-nav');
       }
-      
+
       lastScroll = currentScroll;
     });
   }
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenuToggle.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      
+
       // Toggle hidden class
       const isHidden = mobileMenu.classList.contains('hidden');
       if (isHidden) {
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mobileMenu && mobileMenuToggle) {
         const isClickInsideMenu = mobileMenu.contains(e.target);
         const isClickOnToggle = mobileMenuToggle.contains(e.target);
-        
+
         if (!isClickInsideMenu && !isClickOnToggle && !mobileMenu.classList.contains('hidden')) {
           mobileMenu.classList.add('hidden');
           mobileMenuToggle.classList.remove('active');
@@ -79,9 +79,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   updateCartBadge();
-  
+
   // Listen for cart updates
   window.addEventListener('storage', updateCartBadge);
   window.addEventListener('cartUpdated', updateCartBadge);
+  // Mobile Dropdown Toggle
+  window.toggleMobileDropdown = function (id) {
+    const dropdown = document.getElementById(id);
+    const button = document.querySelector(`button[onclick="toggleMobileDropdown('${id}')"]`);
+    const icon = button.querySelector('svg');
+
+    if (dropdown) {
+      dropdown.classList.toggle('hidden');
+      if (!dropdown.classList.contains('hidden')) {
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+  };
 });
 
